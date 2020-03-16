@@ -1,0 +1,41 @@
+{% extends 'logedin_base.html' %}
+
+
+{% block body %}
+<div  class="float-right mb-3">
+<a class="btn btn-outline-success btn-sm float-right" href="{% url 'add_product' %}" role="button">Add delivery</a>
+</div>
+<br>
+<table class="table table-hover table-sm thead-dark">
+    <thread>
+        <tr>
+            <th>reference ID</th>
+            <th>Date of delivery</th>
+            <th>quantity</th>
+            <th>storage Hygiene</th>
+            <th>bacterial Screening</th>
+            <th>fat Content</th>
+
+        </tr>
+    </thread>
+
+
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{item.productID}}</td>
+            <td>{{item.DOD}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.storageHygiene}}</td>
+            <td>{{item.bacterialScreening}}</td>
+            <td>{{item.fatContent}}</td>
+            <td>
+                <a href="{% url 'edit_product' item.pk %}" class="btn btn-warning btn-sm" role="button">edit</a>
+                <a href="{% url 'delete_product' item.pk %}" class="btn btn-danger btn-sm" role="button">x</a>
+            </td>           
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
